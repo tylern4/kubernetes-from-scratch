@@ -15,6 +15,7 @@
 # limitations under the License.
 
 if [ -z "$IP_ADDRESS" ]; then echo "Empty IP_ADDRESS"; exit 1; fi
+if [ -z "$PORT_NUM" ]; then echo "Empty PORT"; exit 1; fi
 
 # Certificate authority
 openssl genrsa -out ca.key 2048
@@ -53,7 +54,7 @@ openssl req -x509 -key controller-manager.key -CA ca.crt -CAkey ca.key -days 365
 kubectl config set-cluster kubernetes \
   --certificate-authority=ca.crt \
   --embed-certs=true \
-  --server=https://127.0.0.1:443 \
+  --server=https://127.0.0.1:${PORT_NUM} \
   --kubeconfig=controller-manager.conf
 kubectl config set-context system:kube-controller-manager@kubernetes \
   --cluster=kubernetes \
@@ -77,7 +78,7 @@ openssl req -x509 -key admin.key -CA ca.crt -CAkey ca.key -days 365 -nodes -out 
 kubectl config set-cluster kubernetes \
   --certificate-authority=ca.crt \
   --embed-certs=true \
-  --server=https://${IP_ADDRESS}:443 \
+  --server=https://${IP_ADDRESS}:${PORT_NUM} \
   --kubeconfig=admin.conf
 kubectl config set-context kubernetes-admin@kubernetes \
   --cluster=kubernetes \

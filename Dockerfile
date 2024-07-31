@@ -60,4 +60,6 @@ ENV K8SFS_HEADLESS_SERVICES=1
 ENV K8SFS_RANDOM_SCHEDULER=1
 ENV K8SFS_MOCK_KUBELET=1
 
-CMD /usr/local/bin/start-kubernetes.sh
+
+ENTRYPOINT ["/usr/local/bin/start-kubernetes.sh"]
+CMD ["443"]
