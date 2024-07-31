@@ -30,7 +30,7 @@ jobs:
             COREDNS_VERSION=1.10.0
           context: .
           push: true
-          load: true
+          load: flase
           tags: ghcr.io/${{ github.repository_owner }}/kubernetes-from-scratch:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
