@@ -67,7 +67,6 @@ kube-apiserver \
   --secure-port=${PORT_NUM} \
   --client-ca-file=${K8SFS_CONF_DIR}/kubernetes/pki/ca.crt \
   --enable-admission-plugins=NamespaceLifecycle,NodeRestriction,LimitRanger,ServiceAccount,DefaultStorageClass,ResourceQuota \
-  --feature-gates="LegacyServiceAccountTokenNoAutoGeneration=false" \
   --enable-aggregator-routing=true \
   --etcd-cafile=${K8SFS_CONF_DIR}/kubernetes/pki/ca.crt \
   --etcd-certfile=${K8SFS_CONF_DIR}/kubernetes/pki/apiserver.crt \
