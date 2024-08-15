@@ -103,7 +103,7 @@ kube-controller-manager \
 # Configure kubectl
 mkdir -p ~/.kube
 cp ${K8SFS_CONF_DIR}/kubernetes/admin.conf ~/.kube/config
-while ! kubectl version; do sleep 1; done
+while ! kubectl version --short; do sleep 1; done
 
 # Set permissions
 kubectl create clusterrolebinding cluster-admin --clusterrole=cluster-admin --serviceaccount=default:default
