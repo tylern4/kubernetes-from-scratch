@@ -25,9 +25,9 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           build-args: |
-            ETCD_VERSION=3.5.5
-            KUBERNETES_VERSION=1.24.8
-            COREDNS_VERSION=1.10.0
+            ETCD_VERSION=3.5.15
+            KUBERNETES_VERSION=1.30.3
+            COREDNS_VERSION=1.11.3
           context: .
           push: true
           load: false
