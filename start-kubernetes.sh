@@ -67,7 +67,6 @@ kube-apiserver \
   --secure-port=${PORT_NUM} \
   --client-ca-file=${K8SFS_CONF_DIR}/kubernetes/pki/ca.crt \
   --enable-admission-plugins=NamespaceLifecycle,NodeRestriction,LimitRanger,ServiceAccount,DefaultStorageClass,ResourceQuota \
-  --feature-gates="LegacyServiceAccountTokenNoAutoGeneration=false" \
   --enable-aggregator-routing=true \
   --etcd-cafile=${K8SFS_CONF_DIR}/kubernetes/pki/ca.crt \
   --etcd-certfile=${K8SFS_CONF_DIR}/kubernetes/pki/apiserver.crt \
@@ -102,7 +101,7 @@ kube-controller-manager \
 # Configure kubectl
 mkdir -p ~/.kube
 cp ${K8SFS_CONF_DIR}/kubernetes/admin.conf ~/.kube/config
-while ! kubectl version; do sleep 1; done
+while ! kubectl version -o json; do sleep 1; done
 
 # Set permissions
 kubectl create clusterrolebinding cluster-admin --clusterrole=cluster-admin --serviceaccount=default:default
